@@ -1,0 +1,37 @@
+version: "2"
+
+services: 
+    samba:
+        restart: always
+        build: .
+        image: "ad-dc"
+        container_name: dc01
+        hostname: dc01        
+        dns: 
+            - "127.0.0.1"
+            - "192.168.122.5"
+
+        cap_add: 
+            - SYS_TIME
+        volumes: 
+            - "$PWD/data/etc/samba:/etc/samba"
+            - "$PWD/data/etc/kea:/etc/kea"
+            - "$PWD/data/var/kea:/var/lib/kea"
+            - "$PWD/data/var/samba:/var/lib/samba"
+            - "$PWD/data/var/log:/var/log"
+        networks: 
+            localnet:
+                ipv4_address: 192.168.122.4
+
+networks:
+    localnet:
+        driver: macvlan
+        driver_opts:
+            parent:  virbr0
+        ipam:
+            config:
+                - subnet: 192.168.122.0/24
+                  gateway: 192.168.122.1
+                
+
+
