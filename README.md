@@ -21,8 +21,8 @@
 docker run  -v $PWD/data/etc/samba:/etc/samba  -v $PWD/data/var/samba:/var/lib/samba \
   -v $PWD/data/log:/var/log -v $PWD/data/etc/kea:/etc/kea -v $PWD/data/var/kea:/var/lib/kea \
   -e SAMBA_ADMIN_PASSWORD=password -e SAMBA_AD_REALM DEFAULT=domain.local \
-  -e SAMBA_AD_DOMAIN DEFAUL=domain  -h dc01 --net dc01_localnet --ip 192.168.0.4 --dns 127.0.0.1 \
-  --dns 192.168.0.5  --privileged  --name dc01   -it ad-dc create_ad_domain
+  -e SAMBA_AD_DOMAIN DEFAUL=domain  -h dc01 --net dc01_localnet --ip 192.168.122.4 --dns 127.0.0.1 \
+  --dns 192.168.122.5  --privileged  --name dc01   -it ad-dc create_ad_domain
 ```
 
 
